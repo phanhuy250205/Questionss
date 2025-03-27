@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc Nghiệm Kiến Thức</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="min-h-screen antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <nav class="header-nav shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-md bg-opacity-90">
+            <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="#" class="flex items-center space-x-3 group" aria-label="Trang chủ">
+                    <div class="relative">
+                        <i class="fas fa-graduation-cap text-3xl text-white transform group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
+                    </div>
+                    <h2 class="text-sm md:text-lg font-extrabold text-white tracking-wider group-hover:text-purple-200 transition-colors duration-300 whitespace-nowrap">
+                        TRẮC NGHIỆM KIẾN THỨC
+                    </h2>
+                </a>
+                <div id="hamburgerBtn" class="hamburger-btn md:hidden" aria-label="Menu" role="button" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div id="navMenu" class="hidden md:flex items-center space-x-4 lg:space-x-8 text-lg">
+                    <a href="#" id="homeLink" class="nav-item text-white font-semibold text-sm md:text-lg relative group whitespace-nowrap" aria-label="Trang chủ">
+                        <i class="fas fa-home mr-2 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        Trang chủ
+                        <span class="absolute bottom-0 left-1/2 w-0 h-1 bg-white rounded-full group-hover:w-3/4 transition-all duration-300 transform -translate-x-1/2"></span>
+                    </a>
+                    <a href="#" id="quizLink" class="nav-item text-white font-semibold text-sm md:text-lg relative group whitespace-nowrap" aria-label="Bài tập">
+                        <i class="fas fa-book mr-2 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        Bài tập
+                        <span class="absolute bottom-0 left-1/2 w-0 h-1 bg-white rounded-full group-hover:w-3/4 transition-all duration-300 transform -translate-x-1/2"></span>
+                    </a>
+                    <a href="#" id="statsLink" class="nav-item text-white font-semibold text-sm md:text-lg relative group whitespace-nowrap" aria-label="Thống kê">
+                        <i class="fas fa-chart-bar mr-2 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        Thống kê
+                        <span class="absolute bottom-0 left-1/2 w-0 h-1 bg-white rounded-full group-hover:w-3/4 transition-all duration-300 transform -translate-x-1/2"></span>
+                    </a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden glass absolute top-full left-0 right-0 shadow-lg rounded-b-xl p-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#" id="mobileHomeLink" class="mobile-menu-link flex items-center hover:text-purple-700 transition-colors duration-300 p-3 rounded-lg hover:bg-white hover:bg-opacity-10" aria-label="Trang chủ">
+                        <i class="fas fa-home mr-3 w-6 text-center"></i> Trang chủ
+                    </a>
+                    <a href="#" id="mobileQuizLink" class="mobile-menu-link flex items-center hover:text-purple-700 transition-colors duration-300 p-3 rounded-lg hover:bg-white hover:bg-opacity-10" aria-label="Bài tập">
+                        <i class="fas fa-book mr-3 w-6 text-center"></i> Bài tập
+                    </a>
+                    <a href="#" id="mobileStatsLink" class="mobile-menu-link flex items-center hover:text-purple-700 transition-colors duration-300 p-3 rounded-lg hover:bg-white hover:bg-opacity-10" aria-label="Thống kê">
+                        <i class="fas fa-chart-bar mr-3 w-6 text-center"></i> Thống kê
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Container -->
+    <div id="homeContainer" class="min-h-screen quiz-transition mt-5 pt-5">
+        <div class="home-container">
+            <div class="home-background"></div>
+            <div class="particles" id="particles"></div>
+            <i class="fa-solid fa-brain home-icon float-animation"></i>
+            <h1 class="home-title slide-in">
+                Chào mừng đến với<br>Trắc Nghiệm Kiến Thức
+            </h1>
+            <p class="home-description slide-in" style="animation-delay: 0.2s;">
+                Nâng cao kiến thức của bạn với các bài trắc nghiệm thú vị và thử thách!
+            </p>
+
+            <h1 style="font-size: 30px;">QR PHẢN HỒI</h1>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScZn8Kqs97hpsdSOV53GlwmJYIIuVo9tknNlXQ7HdYcZNQ5BA/viewform?usp=dialog">
+                <img src="image/QR_PhanHoi.png" style="width: 350px; margin-bottom: 20px;  border-radius: 50px;" alt="">
+            </a>
+            
+
+
+            <button id="startQuizBtn" class="home-btn pulse-animation" style="animation-delay: 0.4s;" aria-label="Bắt đầu ngay">
+                <i class="fas fa-play-circle"></i> Bắt đầu ngay
+            </button>
+            
+            <div class="mt-8 flex flex-wrap gap-4 justify-center slide-in" style="animation-delay: 0.6s;">
+                <div class="feature-card flex items-center justify-center p-4 w-64">
+                    <i class="fas fa-medal text-4xl text-amber-400 mr-3"></i>
+                    <div class="text-left">
+                        <h3 class="font-bold feature-card-text">Thử thách</h3>
+                        <p class="text-sm feature-card-subtext">Kiểm tra kiến thức</p>
+                    </div>
+                </div>
+                <div class="feature-card flex items-center justify-center p-4 w-64">
+                    <i class="fas fa-chart-line text-4xl text-emerald-400 mr-3"></i>
+                    <div class="text-left">
+                        <h3 class="font-bold feature-card-text">Tiến bộ</h3>
+                        <p class="text-sm feature-card-subtext">Theo dõi kết quả</p>
+                    </div>
+                </div>
+                <div class="feature-card flex items-center justify-center p-4 w-64">
+                    <i class="fas fa-lightbulb text-4xl text-blue-400 mr-3"></i>
+                    <div class="text-left">
+                        <h3 class="font-bold feature-card-text">Học tập</h3>
+                        <p class="text-sm feature-card-subtext">Mở rộng kiến thức</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thống kê tổng quan -->
+            <div class="w-full max-w-6xl mt-12 slide-in" style="animation-delay: 0.8s;">
+                <h2 class="text-2xl font-bold mb-6 text-center feature-card-text">Thống kê của bạn</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="stats-card">
+                        <div class="stats-icon bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
+                            <i class="fas fa-clipboard-check text-xl"></i>
+                        </div>
+                        <h3 class="stats-title">Bài đã hoàn thành</h3>
+                        <p class="stats-value" id="completedQuizzes">0</p>
+                        <div class="stats-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="completedQuizzesTrend">0%</span> so với tuần trước
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stats-icon bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-star text-xl"></i>
+                        </div>
+                        <h3 class="stats-title">Điểm trung bình</h3>
+                        <p class="stats-value" id="averageScore">0.0</p>
+                        <div class="stats-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="averageScoreTrend">0%</span> so với tuần trước
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stats-icon bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <h3 class="stats-title">Tỷ lệ đúng</h3>
+                        <p class="stats-value" id="correctRate">0%</p>
+                        <div class="stats-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="correctRateTrend">0%</span> so với tuần trước
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stats-icon bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <h3 class="stats-title">Thời gian trung bình</h3>
+                        <p class="stats-value" id="averageTime">00:00</p>
+                        <div class="stats-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span id="averageTimeTrend">0%</span> so với tuần trước
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biểu đồ thống kê -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Kết quả 7 ngày gần đây</h3>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #8b5cf6;"></div>
+                                <span>Điểm số</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #10b981;"></div>
+                                <span>Tỷ lệ đúng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="statsChart" height="250"></canvas>
+                </div>
+                
+                <!-- Bài kiểm tra gần đây -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-4 feature-card-text">Bài kiểm tra gần đây</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white dark:bg-gray-800 rounded-lg shadow">
+                            <thead>
+                                <tr class="text-left bg-gray-100 dark:bg-gray-700">
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Tên bài</th>
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ngày làm</th>
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Điểm</th>
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Thời gian</th>
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentQuizTable" class="divide-y divide-gray-200 dark:divide-gray-600">
+                                <!-- Dữ liệu sẽ được thêm vào bằng JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz List Container -->
+    <div id="quizContainer" class="pt-24 pb-12 hidden quiz-transition">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-4 text-dark-800 dark:text-dark slide-in">Danh sách bài trắc nghiệm</h2>
+            <p class="text-center text-gray-600 dark:text-gray-700 mb-8 slide-in" style="animation-delay: 0.2s;">Chọn một bài trắc nghiệm để bắt đầu thử thách kiến thức của bạn</p>
+            
+            <div class="flex justify-center mb-8 slide-in" style="animation-delay: 0.3s;">
+                <div class="relative">
+                    <input type="text" id="searchQuiz" placeholder="Tìm kiếm bài trắc nghiệm..." class="w-full md:w-96 px-4 py-3 rounded-full border border-dark-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-dark-700 white:text-white shadow-md">
+                    <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-dark-400"></i>
+                </div>
+            </div>
+            
+            <div id="quizList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            
+            <div id="loadingQuizzes" class="py-12 text-center">
+                <div class="loading-spinner mb-4"></div>
+                <p class="text-gray-600 dark:text-gray-300">Đang tải danh sách bài trắc nghiệm...</p>
+            </div>
+            
+            <p id="errorMessage" class="text-red-500 text-center hidden mt-8 text-lg">Không thể tải dữ liệu! Vui lòng thử lại sau.</p>
+            
+            <div id="noQuizzesFound" class="hidden py-12 text-center">
+                <i class="fas fa-search text-5xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">Không tìm thấy bài trắc nghiệm nào phù hợp.</p>
+                <button id="clearSearchBtn" class="mt-4 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all shadow-md">Xóa tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Container -->
+    <div id="statsContainer" class="pt-24 pb-12 hidden quiz-transition">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-4 text-dark-800 dark:text-dark slide-in">Thống kê chi tiết</h2>
+            <p class="text-center text-dark-600 dark:text-dark-300 mb-8 slide-in" style="animation-delay: 0.2s;">Theo dõi tiến độ học tập và kết quả của bạn</p>
+            
+            <!-- Thống kê tổng quan -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 slide-in" style="animation-delay: 0.3s;">
+                <div class="stats-card">
+                    <div class="stats-icon bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
+                        <i class="fas fa-clipboard-check text-xl"></i>
+                    </div>
+                    <h3 class="stats-title">Bài đã hoàn thành</h3>
+                    <p class="stats-value" id="statsCompletedQuizzes">0</p>
+                    <div class="stats-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="statsCompletedQuizzesTrend">0%</span> so với tuần trước
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-star text-xl"></i>
+                    </div>
+                    <h3 class="stats-title">Điểm trung bình</h3>
+                    <p class="stats-value" id="statsAverageScore">0.0</p>
+                    <div class="stats-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="statsAverageScoreTrend">0%</span> so với tuần trước
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <h3 class="stats-title">Tỷ lệ đúng</h3>
+                    <p class="stats-value" id="statsCorrectRate">0%</p>
+                    <div class="stats-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="statsCorrectRateTrend">0%</span> so với tuần trước
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <h3 class="stats-title">Thời gian trung bình</h3>
+                    <p class="stats-value" id="statsAverageTime">00:00</p>
+                    <div class="stats-trend down">
+                        <i class="fas fa-arrow-down"></i>
+                        <span id="statsAverageTimeTrend">0%</span> so với tuần trước
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Biểu đồ thống kê -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8 slide-in" style="animation-delay: 0.4s;">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Kết quả theo thời gian</h3>
+                    </div>
+                    <canvas id="timelineChart" height="300"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Phân bố điểm số</h3>
+                    </div>
+                    <canvas id="scoreDistributionChart" height="300"></canvas>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 slide-in" style="animation-delay: 0.5s;">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Thời gian làm bài</h3>
+                    </div>
+                    <canvas id="timeSpentChart" height="300"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Tỷ lệ đúng theo chủ đề</h3>
+                    </div>
+                    <canvas id="topicPerformanceChart" height="300"></canvas>
+                </div>
+            </div>
+            
+            <!-- Lịch sử làm bài -->
+            <div class="mt-8 slide-in" style="animation-delay: 0.6s;">
+                <h3 class="text-xl font-bold mb-4 feature-card-text">Lịch sử làm bài</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white dark:bg-gray-800 rounded-lg shadow">
+                        <thead>
+                            <tr class="text-left bg-gray-100 dark:bg-gray-700">
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Tên bài</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ngày làm</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Điểm</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Thời gian</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Câu đúng</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quizHistoryTable" class="divide-y divide-gray-200 dark:divide-gray-600">
+                            <!-- Dữ liệu sẽ được thêm vào bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Question Container -->
+    <div id="quizQuestionContainer" class="pt-24 pb-12 hidden quiz-transition">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="bg-dark dark:bg-white-800 rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:shadow-2xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <h2 id="quizTitle" class="text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 slide-in"></h2>
+                    <span id="timer" class="timer-display slide-in" style="animation-delay: 0.2s;">
+                        <i class="far fa-clock"></i> 00:00
+                    </span>
+                </div>
+                <p id="quizDescription" class="quiz-description mb-6 text-lg slide-in" style="animation-delay: 0.3s;"></p>
+                
+                <div class="flex justify-between items-center mb-2 slide-in" style="animation-delay: 0.4s;">
+                    <span id="quizProgressText" class="text-sm font-medium text-gray-500 dark:text-gray-400"></span>
+                    <span class="text-sm font-medium text-purple-600 dark:text-purple-400">Tiến độ</span>
+                </div>
+                <div class="progress-container slide-in" style="animation-delay: 0.5s;">
+                    <div id="progressBar" class="progress-bar gradient-flow"></div>
+                </div>
+                
+                <div id="questionNavigation" class="flex flex-wrap gap-3 justify-center my-8 slide-in" style="animation-delay: 0.6s;"></div>
+                
+                <div id="questionContainer" class="space-y-6 mb-8 slide-in" style="animation-delay: 0.7s;"></div>
+                
+                <div class="flex flex-wrap justify-between mt-8 gap-4 slide-in" style="animation-delay: 0.8s;">
+                    <div class="flex gap-3 flex-wrap">
+                        <button id="prevButton" class="action-btn prev-btn" aria-label="Quay lại">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </button>
+                        <button id="nextButton" class="action-btn next-btn" disabled aria-label="Tiếp theo">
+                            <i class="fas fa-arrow-right"></i> Tiếp theo
+                        </button>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <button id="resetProgressButton" class="action-btn reset-btn" aria-label="Xóa tiến trình">
+                            <i class="fas fa-trash-alt"></i> Xóa tiến trình
+                        </button>
+                        <button id="backButton" class="action-btn back-btn" aria-label="Quay lại danh sách">
+                            <i class="fas fa-arrow-circle-left"></i> Quay lại danh sách
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Container -->
+    <div id="resultContainer" class="pt-24 pb-12 hidden quiz-transition">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="result-container slide-in">
+                <div class="result-header">
+                    <div class="flex justify-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                            <i class="fas fa-trophy text-3xl text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                    </div>
+                    <h2 class="result-title">Kết Quả Bài Kiểm Tra</h2>
+                    <p id="score" class="result-score"></p>
+                    <p id="timeTaken" class="result-time"></p>
+                    
+                    <div class="flex justify-center gap-4 mt-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" id="correctCount">0</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Câu đúng</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-500" id="wrongCount">0</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Câu sai</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-dark-600 dark:text-dark-300" id="totalCount">0</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Tổng số câu</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="wrongAnswers" class="space-y-6 mt-8"></div>
+                
+                <div class="result-buttons">
+                    <button id="restartButton" class="result-btn result-btn-restart" aria-label="Làm lại">
+                        <i class="fas fa-redo"></i> Làm lại
+                    </button>
+                    <button id="reviewWrongButton" class="result-btn result-btn-review" aria-label="Ôn tập câu sai">
+                        <i class="fas fa-search"></i> Ôn tập câu sai
+                    </button>
+                    <button id="homeButton" class="result-btn result-btn-home" aria-label="Về trang chủ">
+                        <i class="fas fa-home"></i> Về trang chủ
+                    </button>
+                </div>
+                
+                <div class="mt-8 p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg text-center shadow-md">
+                    <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2">Chia sẻ kết quả của bạn</h3>
+                    <div class="flex justify-center gap-3 mt-2">
+                        <button class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-all shadow-md" aria-label="Chia sẻ qua Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition-all shadow-md" aria-label="Chia sẻ qua Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-all shadow-md" aria-label="Chia sẻ qua WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-all shadow-md" aria-label="Chia sẻ qua LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal -->
+    <div id="customModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalMessage" class="modal-message"></p>
+            <div id="modalButtons" class="modal-buttons"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div id="themeToggle" class="theme-toggle" aria-label="Chuyển đổi chế độ sáng/tối">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="confetti-container"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
